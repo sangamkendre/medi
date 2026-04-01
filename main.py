@@ -6,7 +6,7 @@ from typing import List
 app = FastAPI()
 
 try:
-    df = pd.read_csv(r"C:\Users\sanga\Downloads\archive (7)\A_Z_medicines_dataset_of_India.csv")
+    df = pd.read_csv("medicines.csv")
     # Pre-process: ensure medicine names are strings and handle missing values
     medicine_list = df['name'].dropna().astype(str).tolist()
 except FileNotFoundError:
