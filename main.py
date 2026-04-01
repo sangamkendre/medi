@@ -30,6 +30,15 @@ def get_suggestions(q: str = Query(..., min_length=1)):
 
     return {"query": q, "suggestions": suggestions}
 
+import os
+import uvicorn
+
+# ... your FastAPI app code ...
+
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    # Render provides a 'PORT' environment variable. 
+    # If it's not found (like on your laptop), it defaults to 8000.
+    port = int(os.environ.get("PORT", 8000))
+    
+    # Change host to "0.0.0.0" to allow external access on Render
+    uvicorn.run(app, host="0.0.0.0", port=port)
